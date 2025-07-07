@@ -1,0 +1,165 @@
+{
+  "name": "yizhen",
+  "version": "1.1.0",
+  "description": "Yizhen 艺珍 - Optimized Chinese Ceramics Auction Platform with Web3 Integration",
+  "main": "public/index.html",
+  "type": "module",
+  "scripts": {
+    "start": "npx serve public -l 3000 --cors",
+    "dev": "npx serve public -l 3000 --cors",
+    "build": "npm run optimize:images && npm run optimize:css && npm run optimize:js",
+    "optimize:images": "npx imagemin public/assets/images/* --out-dir=public/assets/images/optimized --plugin=imagemin-webp --plugin=imagemin-mozjpeg --plugin=imagemin-pngquant",
+    "optimize:css": "npx postcss public/assets/css/main.css -o public/assets/css/main.min.css --use autoprefixer --use cssnano",
+    "optimize:js": "npx terser public/assets/js/*.js --compress --mangle --source-map --output-path public/assets/js/dist/",
+    "optimize:videos": "node scripts/optimize-videos.js",
+    "lighthouse": "npx lighthouse http://localhost:3000 --output html --output-path ./lighthouse-report.html",
+    "performance": "node scripts/performance-test.js",
+    "preload-analysis": "node scripts/analyze-preload.js",
+    "bundle-analysis": "npx webpack-bundle-analyzer public/assets/js/dist/stats.json",
+    "audit": "npm audit && npx eslint public/assets/js/*.js",
+    "compress": "npx gzip-size-cli public/assets/css/main.css public/assets/js/*.js",
+    "test:performance": "npx web-vitals-cli http://localhost:3000",
+    "validate:html": "npx html-validate public/index.html",
+    "validate:css": "npx stylelint public/assets/css/*.css",
+    "security:scan": "npx audit-ci --config audit-ci.json",
+    "seo:audit": "npx unlighthouse --site http://localhost:3000",
+    "clean": "rm -rf public/assets/*/dist public/assets/*/optimized *.log",
+    "deploy:prep": "npm run build && npm run lighthouse && npm run compress"
+  },
+  "keywords": [
+    "yizhen",
+    "chinese-ceramics",
+    "auction",
+    "web3",
+    "erc-404",
+    "nft",
+    "art",
+    "provenance",
+    "performance-optimized",
+    "pwa"
+  ],
+  "author": "Yizhen Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jnodes/yizhen.git"
+  },
+  "devDependencies": {
+    "serve": "^14.2.0",
+    "imagemin-cli": "^7.0.0",
+    "imagemin-webp": "^8.0.0",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "postcss-cli": "^10.1.0",
+    "autoprefixer": "^10.4.16",
+    "cssnano": "^6.0.1",
+    "terser": "^5.24.0",
+    "lighthouse": "^11.4.0",
+    "webpack-bundle-analyzer": "^4.10.1",
+    "eslint": "^8.56.0",
+    "gzip-size-cli": "^5.1.0",
+    "web-vitals-cli": "^1.0.3",
+    "html-validate": "^8.7.4",
+    "stylelint": "^16.1.0",
+    "audit-ci": "^6.6.1",
+    "unlighthouse": "^0.10.15",
+    "sharp": "^0.33.1",
+    "ffmpeg-static": "^5.2.0"
+  },
+  "dependencies": {
+    "workbox-sw": "^7.0.0",
+    "web-vitals": "^3.5.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "peerDependencies": {
+    "ethers": "^6.11.1"
+  },
+  "config": {
+    "imageOptimization": {
+      "quality": 85,
+      "progressive": true,
+      "webp": true
+    },
+    "videoOptimization": {
+      "quality": "720p",
+      "codec": "h264",
+      "bitrate": "1M"
+    }
+  },
+  "performance": {
+    "budgets": {
+      "javascript": "200kb",
+      "css": "50kb",
+      "images": "500kb",
+      "fonts": "100kb"
+    },
+    "metrics": {
+      "fcp": 1.5,
+      "lcp": 2.5,
+      "cls": 0.1,
+      "fid": 100
+    }
+  },
+  "seo": {
+    "sitemap": "public/sitemap.xml",
+    "robots": "public/robots.txt",
+    "manifest": "public/manifest.json"
+  },
+  "security": {
+    "csp": "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self' https:;",
+    "hsts": "max-age=31536000; includeSubDomains",
+    "xframe": "DENY"
+  },
+  "pwa": {
+    "name": "Yizhen 艺珍",
+    "shortName": "Yizhen",
+    "description": "Premium Chinese Ceramics Auction Platform",
+    "themeColor": "#c9302c",
+    "backgroundColor": "#ffffff",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "startUrl": "/"
+  },
+  "monitoring": {
+    "analytics": {
+      "provider": "gtag",
+      "trackingId": "G-XXXXXXXXXX"
+    },
+    "errorTracking": {
+      "provider": "sentry",
+      "dsn": ""
+    },
+    "performanceMonitoring": {
+      "provider": "web-vitals",
+      "endpoint": "/api/analytics/web-vitals"
+    }
+  },
+  "cdn": {
+    "provider": "cloudflare",
+    "zone": "yizhen.com",
+    "purgeOnDeploy": true
+  },
+  "optimization": {
+    "treeshaking": true,
+    "minification": true,
+    "compression": {
+      "gzip": true,
+      "brotli": true
+    },
+    "caching": {
+      "staticAssets": "1y",
+      "dynamicContent": "1h",
+      "api": "5m"
+    }
+  }
+}
