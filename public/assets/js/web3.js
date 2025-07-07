@@ -1,4 +1,4 @@
-// Web3 Manager Module
+// Web3 Manager Module - Fixed Version
 export class Web3Manager {
     constructor() {
         this.provider = null;
@@ -6,7 +6,16 @@ export class Web3Manager {
         this.userAccount = null;
         this.auctionContract = null;
         this.erc404Contract = null;
+        
+        // Initialize contractAddresses first
+        this.contractAddresses = {
+            auction: "0x1234567890123456789012345678901234567890",
+            erc404: "0x0987654321098765432109876543210987654321"
+        };
+        
+        // Then check demo mode
         this.isDemo = this.checkDemoMode();
+        
         this.networkConfig = {
             chainId: 11155111n, // Sepolia testnet
             chainName: 'Sepolia Testnet',
@@ -14,15 +23,11 @@ export class Web3Manager {
             rpcUrls: ['https://sepolia.infura.io/v3/'],
             blockExplorerUrls: ['https://sepolia.etherscan.io/']
         };
-        this.contractAddresses = {
-            auction: "0x1234567890123456789012345678901234567890",
-            erc404: "0x0987654321098765432109876543210987654321"
-        };
     }
 
     checkDemoMode() {
         return !window.ethereum || 
-               !this.contractAddresses.auction.startsWith('0x') || 
+               !this.contractAddresses?.auction?.startsWith('0x') || 
                this.contractAddresses.auction === "0x1234567890123456789012345678901234567890";
     }
 
