@@ -1,7 +1,6 @@
 {
   "version": 2,
   "name": "yizhen-platform",
-  "alias": ["yizhen.com"],
   "build": {
     "env": {
       "NODE_ENV": "production"
@@ -19,12 +18,6 @@
     "autoJobCancelation": true,
     "silent": false
   },
-  "functions": {
-    "public/api/**/*.js": {
-      "runtime": "nodejs18.x",
-      "maxDuration": 10
-    }
-  },
   "headers": [
     {
       "source": "/assets/css/(.*)",
@@ -32,10 +25,6 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
-        },
-        {
-          "key": "Content-Encoding",
-          "value": "gzip"
         }
       ]
     },
@@ -45,10 +34,6 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
-        },
-        {
-          "key": "Content-Encoding",
-          "value": "gzip"
         }
       ]
     },
@@ -58,10 +43,6 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
-        },
-        {
-          "key": "Vary",
-          "value": "Accept"
         }
       ]
     },
@@ -71,10 +52,6 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
-        },
-        {
-          "key": "Accept-Ranges",
-          "value": "bytes"
         }
       ]
     },
@@ -105,32 +82,6 @@
         {
           "key": "Referrer-Policy",
           "value": "strict-origin-when-cross-origin"
-        },
-        {
-          "key": "Permissions-Policy",
-          "value": "camera=(), microphone=(), geolocation=(), payment=()"
-        },
-        {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self' https: wss:; frame-src 'none'; object-src 'none'; base-uri 'self';"
-        }
-      ]
-    },
-    {
-      "source": "/sw.js",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
-        }
-      ]
-    },
-    {
-      "source": "/manifest.json",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400"
         }
       ]
     }
@@ -140,22 +91,9 @@
       "source": "/home",
       "destination": "/",
       "permanent": true
-    },
-    {
-      "source": "/auction/:id",
-      "destination": "/#auction-:id",
-      "permanent": false
     }
   ],
   "rewrites": [
-    {
-      "source": "/api/analytics",
-      "destination": "/api/analytics.js"
-    },
-    {
-      "source": "/api/web-vitals",
-      "destination": "/api/web-vitals.js"
-    },
     {
       "source": "/sitemap.xml",
       "destination": "/api/sitemap.js"
@@ -166,31 +104,5 @@
     }
   ],
   "trailingSlash": false,
-  "cleanUrls": true,
-  "images": {
-    "domains": ["cdn.jsdelivr.net", "fonts.googleapis.com"],
-    "formats": ["image/webp", "image/avif"],
-    "minimumCacheTTL": 31536000,
-    "dangerouslyAllowSVG": false,
-    "remotePatterns": [
-      {
-        "protocol": "https",
-        "hostname": "**.googleapis.com"
-      },
-      {
-        "protocol": "https",
-        "hostname": "**.gstatic.com"
-      }
-    ]
-  },
-  "crons": [
-    {
-      "path": "/api/cleanup",
-      "schedule": "0 2 * * *"
-    },
-    {
-      "path": "/api/analytics/daily",
-      "schedule": "0 1 * * *"
-    }
-  ]
+  "cleanUrls": true
 }
