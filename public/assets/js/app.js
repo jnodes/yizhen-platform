@@ -202,34 +202,224 @@ class YizhenApp {
         this.bindArtifactCardEvents();
     }
 
-    createArtifactCard(artifact) {
-        const videoSrc = artifact.video || '/assets/videos/placeholder.mp4';
-        const posterSrc = artifact.poster || '/assets/images/placeholder.jpg';
-        
-        return `
-            <div class="artifact-card" data-artifact-id="${artifact.id}">
-                <div class="artifact-video-container ${artifact.videoOrientation || 'square'}">
-                    <video 
-                        src="${videoSrc}" 
-                        poster="${posterSrc}"
-                        class="artifact-video lazy" 
-                        muted 
-                        loop
-                        preload="none"
-                        data-src="${videoSrc}">
-                    </video>
-                </div>
-                <div class="artifact-info">
-                    <div class="artifact-lot">LOT ${artifact.lotNumber}</div>
-                    <h3 class="artifact-title">${artifact.title}</h3>
-                    <p class="artifact-dynasty">${artifact.chinese}<br>${artifact.dynastyInfo}</p>
-                    <p class="artifact-estimate">Estimate: $${artifact.estimate.low.toLocaleString()} - $${artifact.estimate.high.toLocaleString()}</p>
-                    <p class="artifact-bid">$${artifact.currentBid.toLocaleString()}</p>
-                    <p class="artifact-estimate">${artifact.bidCount} bids • ${this.getTimeLeft(artifact.endTime)}</p>
-                </div>
+    // Updated app.js - Video-First Homepage Display
+// Add this to your existing app.js file or replace the createArtifactCard function
+
+createArtifactCard(artifact) {
+    const videoSrc = artifact.video || '/assets/videos/placeholder.mp4';
+    
+    return `
+        <div class="artifact-card" data-artifact-id="${artifact.id}">
+            <div class="artifact-video-container ${artifact.videoOrientation || 'square'}">
+                <video 
+                    src="${videoSrc}" 
+                    class="artifact-video" 
+                    muted 
+                    loop
+                    playsinline
+                    preload="metadata"
+                    onloadeddata="this.play().catch(e => console.log('Autoplay prevented'))"
+                    onmouseover="this.play().catch(e => {})"
+                    onmouseout="this.pause()"
+                    style="width: 100%; height: auto; display: block; background: #f8f8f8;">
+                    <source src="${videoSrc}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
-        `;
+            <div class="artifact-info">
+                <div class="artifact-lot">LOT ${artifact.lotNumber}</div>
+                <h3 class="artifact-title">${artifact.title}</h3>
+                <p class="artifact-dynasty">${artifact.chinese}<br>${artifact.dynastyInfo}</p>
+                <p class="artifact-estimate">Estimate: $${artifact.estimate.low.toLocaleString()} - $${artifact.estimate.high.toLocaleString()}</p>
+                <p class="artifact-bid">$${artifact.currentBid.toLocaleString()}</p>
+                <p class="artifact-estimate">${artifact.bidCount} bids • ${this.getTimeLeft(artifact.endTime)}</p>
+            </div>
+        </div>
+    `;
+}
+
+// Enhanced video loading for main grid
+observeVideos() {
+    const videoObserver = this.observers.get('video');
+    if (!videoObserver) return;
+
+    // Observe all videos in the grid
+    const gridVideos = document.querySelectorAll('.artifacts-grid video');
+    gridVideos.forEach(video => {
+        videoObserver.observe(video);
+        
+        // Enhanced video loading
+        video.addEventListener('loadeddata', () => {
+            // Try to play when loaded
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    // Autoplay was prevented, that's okay
+                    console.log('Video autoplay prevented, will play on hover');
+                });
+            }
+        });
+        
+        // Pause video when out of viewport
+        video.addEventListener('pause', () => {
+            video.currentTime = 0; // Reset to beginning
+        });
+    });
+}
+
+// Enhanced lazy video loading
+loadVideo(video) {
+    if (this.loadedVideos.has(video)) return;
+
+    const videoSrc = video.dataset.src || video.src;
+    if (!videoSrc) return;
+
+    console.log('Loading video:', videoSrc);
+    
+    // Set video properties for grid display
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.preload = 'metadata';
+    
+    // Load the video
+    if (video.src !== videoSrc) {
+        video.src = videoSrc;
     }
+    
+    video.addEventListener('loadeddata', () => {
+        console.log('Video loaded:', videoSrc);
+        video.classList.remove('lazy');
+        video.classList.add('loaded');
+        
+        // Try to start playing
+        this.attemptVideoPlay(video);
+        
+        this.loadedVideos.add(video);
+    });
+
+    video.addEventListener('error', () => {
+        console.error('Failed to load video:', videoSrc);
+        this.handleVideoError(video);
+    });
+}
+
+// Smart video play attempt
+attemptVideoPlay(video) {
+    const playPromise = video.play();
+    
+    if (playPromise !== undefined) {
+        playPromise.then(() => {
+            console.log('Video playing successfully');
+        }).catch(error => {
+            console.log('Autoplay prevented, setting up hover play');
+            
+            // If autoplay fails, set up hover events
+            video.addEventListener('mouseenter', () => {
+                video.play().catch(e => {});
+            });
+            
+            video.addEventListener('mouseleave', () => {
+                video.pause();
+                video.currentTime = 0;
+            });
+        });
+    }
+}
+
+// Updated render function to prioritize videos
+renderArtifacts() {
+    const grid = document.getElementById('artifacts-grid');
+    if (!grid) return;
+
+    let filteredArtifacts = this.artifacts;
+    
+    // Apply filter
+    if (this.currentFilter !== 'all') {
+        filteredArtifacts = this.artifacts.filter(a => a.dynasty === this.currentFilter);
+    }
+    
+    // Apply sort
+    filteredArtifacts.sort((a, b) => {
+        switch(this.currentSort) {
+            case 'price-high':
+                return b.currentBid - a.currentBid;
+            case 'price-low':
+                return a.currentBid - b.currentBid;
+            case 'ending':
+                return a.endTime - b.endTime;
+            default:
+                return a.lotNumber.localeCompare(b.lotNumber);
+        }
+    });
+    
+    grid.innerHTML = filteredArtifacts.map(artifact => this.createArtifactCard(artifact)).join('');
+    
+    // Initialize video lazy loading
+    setTimeout(() => {
+        this.initializeGridVideos();
+    }, 100);
+    
+    // Add click handlers
+    this.bindArtifactCardEvents();
+}
+
+// Initialize videos in the grid
+initializeGridVideos() {
+    const videos = document.querySelectorAll('.artifacts-grid video');
+    
+    videos.forEach((video, index) => {
+        // Stagger video loading to prevent overwhelming the browser
+        setTimeout(() => {
+            this.setupGridVideo(video);
+        }, index * 200);
+    });
+}
+
+// Setup individual grid video
+setupGridVideo(video) {
+    // Ensure video is properly configured
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.preload = 'metadata';
+    
+    // Add loading state
+    video.style.opacity = '0';
+    video.style.transition = 'opacity 0.3s ease';
+    
+    video.addEventListener('loadeddata', () => {
+        video.style.opacity = '1';
+        
+        // Try to play
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                // If autoplay fails, show first frame
+                video.currentTime = 1; // Show frame at 1 second
+            });
+        }
+    });
+    
+    // Hover effects
+    video.addEventListener('mouseenter', () => {
+        video.play().catch(() => {});
+    });
+    
+    video.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0;
+    });
+    
+    // Handle errors gracefully
+    video.addEventListener('error', () => {
+        video.style.background = '#f0f0f0';
+        video.style.display = 'flex';
+        video.style.alignItems = 'center';
+        video.style.justifyContent = 'center';
+        video.innerHTML = '<span style="color: #666;">Video Loading...</span>';
+    });
+}
 
     bindArtifactCardEvents() {
         document.querySelectorAll('.artifact-card').forEach(card => {
