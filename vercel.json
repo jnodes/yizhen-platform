@@ -1,0 +1,196 @@
+{
+  "version": 2,
+  "name": "yizhen-platform",
+  "alias": ["yizhen.com"],
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    }
+  },
+  "buildCommand": "npm run build",
+  "outputDirectory": "public",
+  "installCommand": "npm install",
+  "devCommand": "npm run dev",
+  "framework": null,
+  "public": false,
+  "github": {
+    "enabled": true,
+    "autoAlias": true,
+    "autoJobCancelation": true,
+    "silent": false
+  },
+  "functions": {
+    "public/api/**/*.js": {
+      "runtime": "nodejs18.x",
+      "maxDuration": 10
+    }
+  },
+  "headers": [
+    {
+      "source": "/assets/css/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Content-Encoding",
+          "value": "gzip"
+        }
+      ]
+    },
+    {
+      "source": "/assets/js/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Content-Encoding",
+          "value": "gzip"
+        }
+      ]
+    },
+    {
+      "source": "/assets/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Vary",
+          "value": "Accept"
+        }
+      ]
+    },
+    {
+      "source": "/assets/videos/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Accept-Ranges",
+          "value": "bytes"
+        }
+      ]
+    },
+    {
+      "source": "/assets/data/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=()"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self' https: wss:; frame-src 'none'; object-src 'none'; base-uri 'self';"
+        }
+      ]
+    },
+    {
+      "source": "/sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/manifest.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/auction/:id",
+      "destination": "/#auction-:id",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/analytics",
+      "destination": "/api/analytics.js"
+    },
+    {
+      "source": "/api/web-vitals",
+      "destination": "/api/web-vitals.js"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap.js"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/api/robots.js"
+    }
+  ],
+  "trailingSlash": false,
+  "cleanUrls": true,
+  "images": {
+    "domains": ["cdn.jsdelivr.net", "fonts.googleapis.com"],
+    "formats": ["image/webp", "image/avif"],
+    "minimumCacheTTL": 31536000,
+    "dangerouslyAllowSVG": false,
+    "remotePatterns": [
+      {
+        "protocol": "https",
+        "hostname": "**.googleapis.com"
+      },
+      {
+        "protocol": "https",
+        "hostname": "**.gstatic.com"
+      }
+    ]
+  },
+  "crons": [
+    {
+      "path": "/api/cleanup",
+      "schedule": "0 2 * * *"
+    },
+    {
+      "path": "/api/analytics/daily",
+      "schedule": "0 1 * * *"
+    }
+  ]
+}
