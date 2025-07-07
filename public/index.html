@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ru Kiln Ceramics & Chinese Imperial Artifacts | Yizhen 艺珍</title>
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Critical CSS - Inline for immediate rendering -->
+    <style>
+        /* Critical above-the-fold styles only */
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--primary:#000;--secondary:#fff;--accent:#c9302c;--gray-light:#f8f8f8;--gray-medium:#e5e5e5;--text-primary:#000;--text-secondary:#666;--font-primary:'Cormorant Garamond',serif;--font-secondary:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+        body{font-family:var(--font-secondary);background:var(--secondary);color:var(--text-primary);line-height:1.6;font-weight:300}
+        h1,h2,h3,h4,h5,h6{font-family:var(--font-primary);font-weight:300;letter-spacing:-0.02em}
+        .loading{position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .3s ease}
+        .loading.hidden{opacity:0;pointer-events:none}
+        .loader{width:40px;height:40px;border:2px solid var(--gray-medium);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        header{background:rgba(255,255,255,.95);border-bottom:1px solid var(--gray-medium);position:sticky;top:0;z-index:1000;padding:0 2rem;backdrop-filter:blur(10px)}
+        nav{display:flex;justify-content:space-between;align-items:center;height:80px;max-width:1400px;margin:0 auto;position:relative}
+        .logo{display:flex;flex-direction:column;align-items:flex-start;cursor:pointer}
+        .logo-text{display:flex;align-items:baseline;gap:.5rem}
+        .logo-chinese{font-family:var(--font-primary);font-size:1.25rem;font-weight:400}
+        .logo-english{font-family:var(--font-primary);font-size:1.75rem;font-weight:400;letter-spacing:.05em}
+        .logo-tagline{font-size:.625rem;text-transform:uppercase;letter-spacing:.2em;color:var(--text-secondary);margin-top:.25rem;font-family:var(--font-secondary)}
+        .nav-center{display:flex;gap:3rem;position:absolute;left:50%;transform:translateX(-50%)}
+        .nav-center a{color:var(--text-primary);text-decoration:none;font-size:.875rem;text-transform:uppercase;letter-spacing:.1em;transition:color .3s ease;position:relative}
+        .nav-center a:hover{color:var(--accent)}
+        .nav-right{display:flex;align-items:center;gap:2rem}
+        .connect-wallet{background:var(--primary);color:var(--secondary);border:1px solid var(--primary);padding:.75rem 2rem;font-size:.875rem;text-transform:uppercase;letter-spacing:.1em;cursor:pointer;transition:all .3s ease;font-weight:400}
+        .connect-wallet:hover{background:transparent;color:var(--primary)}
+        .hero{height:500px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;background-image:url('/assets/images/hero-bg.jpg');background-size:cover;background-position:center}
+        .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(to bottom,rgba(0,0,0,.4),rgba(0,0,0,.6));z-index:1}
+        .hero-content{position:relative;z-index:2;text-align:center;color:#fff;max-width:800px;padding:0 2rem;animation:heroFadeIn 1s ease}
+        @keyframes heroFadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        .hero h1{font-size:3.5rem;font-weight:300;margin-bottom:1rem;letter-spacing:-0.02em;font-family:var(--font-primary)}
+        .hero p{font-size:1.25rem;font-weight:300;opacity:.9;margin-bottom:2rem;font-family:var(--font-secondary)}
+        .hero-cta{background:var(--accent);color:#fff;border:none;padding:1rem 3rem;font-size:.875rem;text-transform:uppercase;letter-spacing:.1em;cursor:pointer;transition:all .3s ease}
+        .hero-cta:hover{background:#a02622;transform:translateY(-2px);box-shadow:0 10px 30px rgba(201,48,44,.3)}
+        @media (max-width:768px){
+            header{padding:0 1rem}
+            nav{height:60px;gap:1rem}
+            .nav-center{display:none}
+            .hero{height:400px}
+            .hero h1{font-size:2rem}
+            .hero p{font-size:1rem}
+        }
+    </style>
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap"></noscript>
+    
+    <!-- Enhanced SEO Meta Tags -->
+    <meta name="description" content="Yizhen 艺珍 - Where Heritage Meets Innovation. Authenticated Ru kiln ceramics from Northern Song Dynasty, Ming Jingtai cloisonné, and Yuan blue-glazed porcelain. Museum-quality Chinese artifacts with blockchain ownership verification.">
+    <meta name="keywords" content="Yizhen, 艺珍, Ru kiln, Ru ware, Song Dynasty, Chinese ceramics, 汝窯, 宋代瓷器, Ming Dynasty, Jingtai cloisonné, 景泰藍, Yuan Dynasty, Jilan glaze, 霽藍釉, auction, ERC-404, NFT, provenance, Emperor Huizong">
+    
+    <!-- Open Graph for Social -->
+    <meta property="og:title" content="Yizhen 艺珍 | $35M+ Chinese Imperial Ceramics Collection">
+    <meta property="og:description" content="Where Heritage Meets Innovation. Own museum-quality Ru kiln ceramics and imperial Chinese artifacts from Song, Yuan, and Ming dynasties.">
+    <meta property="og:image" content="/assets/videos/relics/001-song-ru-washer/main.mp4">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yizhen.com">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Yizhen 艺珍 - Rare Ru Kiln Ceramics at Auction">
+    <meta name="twitter:description" content="Exceptional Northern Song Ru ware, Ming cloisonné, and Yuan porcelain. Where heritage meets innovation in Chinese ceramic achievement.">
+    <meta name="twitter:image" content="/assets/videos/relics/001-song-ru-washer/main.mp4">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.ico">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ArtGallery",
+      "name": "Yizhen 艺珍",
+      "description": "The Art of Provenance - Web3 auction house specializing in imperial Chinese ceramics from Song, Yuan, and Ming dynasties",
+      "url": "https://yizhen.com",
+      "slogan": "The Art of Provenance"
+    }
+    </script>
+    
+    <link rel="canonical" href="https://yizhen.com">
+    
+    <!-- Defer non-critical CSS -->
+    <link rel="preload" href="/assets/css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/assets/css/main.css"></noscript>
+    
+    <!-- Preload critical JavaScript -->
+    <link rel="modulepreload" href="/assets/js/app.js">
+    <link rel="modulepreload" href="/assets/js/web3.js">
+    
+    <!-- Preload artifact data -->
+    <link rel="preload" href="/assets/data/artifacts.json" as="fetch" crossorigin>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loader"></div>
+    </div>
+
+    <header>
+        <nav>
+            <div class="logo" onclick="scrollToTop()">
+                <div class="logo-text">
+                    <div class="logo-chinese">艺珍</div>
+                    <div class="logo-english">Yizhen</div>
+                </div>
+                <div class="logo-tagline">Where Heritage Meets Innovation</div>
+            </div>
+            <div class="nav-center">
+                <a href="#auctions" class="active">Auctions</a>
+                <a href="#private">Private Sales</a>
+                <a href="#exhibitions">Exhibitions</a>
+                <a href="#about">About</a>
+            </div>
+            <div class="nav-right">
+                <div class="wallet-info">
+                    <button class="connect-wallet" id="connect-wallet-btn">
+                        <span id="wallet-text">Connect Wallet</span>
+                    </button>
+                </div>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Exceptional Chinese Art</h1>
+            <p>Song, Yuan & Ming Dynasty Masterpieces</p>
+            <button class="hero-cta" onclick="scrollToAuctions()">View Current Auctions</button>
+        </div>
+    </section>
+
+    <div class="auction-header" id="auctions">
+        <h2>Featured Lots</h2>
+        <div class="auction-stats">
+            <div class="stat-item">
+                <span class="stat-value" id="total-lots">0</span>
+                <span>Total Lots</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="total-bids">0</span>
+                <span>Active Bids</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="total-value">0</span>
+                <span>Total Value (USD)</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="filter-bar">
+        <div class="dynasty-filters">
+            <button class="dynasty-filter active" data-filter="all">All Dynasties</button>
+            <button class="dynasty-filter" data-filter="song">Song Dynasty</button>
+            <button class="dynasty-filter" data-filter="yuan">Yuan Dynasty</button>
+            <button class="dynasty-filter" data-filter="ming">Ming Dynasty</button>
+        </div>
+        <div class="sort-controls">
+            <span>Sort by:</span>
+            <select class="sort-select" id="sort-select">
+                <option value="lot">Lot Number</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="ending">Ending Soon</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Artifacts Grid Container -->
+    <div class="artifacts-grid" id="artifacts-grid">
+        <!-- Artifact cards will be dynamically generated -->
+    </div>
+
+    <!-- Artifact Detail Modal -->
+    <div class="modal" id="artifact-modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+            <div class="modal-body">
+                <div class="modal-video-section">
+                    <video src="" autoplay muted loop class="modal-video" id="modal-video"></video>
+                </div>
+                <div class="modal-info-section" id="modal-info">
+                    <!-- Modal content will be populated dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo-text">
+                    <div class="logo-chinese">艺珍</div>
+                    <div class="logo-english">Yizhen</div>
+                </div>
+                <p class="footer-tagline">Where Heritage Meets Innovation</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Yizhen 艺珍. All rights reserved. | Web3 Auction House</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Load ethers.js asynchronously -->
+    <script async src="https://cdn.jsdelivr.net/npm/ethers@6.11.1/dist/ethers.umd.min.js"></script>
+    
+    <!-- Load application modules -->
+    <script type="module" src="/assets/js/app.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => console.log('SW registered'))
+                    .catch(error => console.log('SW registration failed'));
+            });
+        }
+    </script>
+</body>
+</html>
