@@ -802,6 +802,17 @@ footer {
         column-count: 1;
         padding: 0 1rem;
     }
+
+    /* Mobile Video Optimizations */
+    .artifact-video-container {
+    min-height: 180px;
+    border-radius: 6px;
+    }
+
+    .artifact-video {
+    border-radius: 6px;
+    preload: none; /* Save mobile data */
+    }
     
     .artifact-card {
         margin-bottom: 2rem;
