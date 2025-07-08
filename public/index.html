@@ -34,7 +34,7 @@
         .nav-right{display:flex;align-items:center;gap:2rem}
         .connect-wallet{background:var(--primary);color:var(--secondary);border:1px solid var(--primary);padding:.75rem 2rem;font-size:.875rem;text-transform:uppercase;letter-spacing:.1em;cursor:pointer;transition:all .3s ease;font-weight:400}
         .connect-wallet:hover{background:transparent;color:var(--primary)}
-        .hero{height:500px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;background-image:url('/assets/images/hero-bg.jpg');background-size:cover;background-position:center}
+        .hero{height:500px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#333}
         .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(to bottom,rgba(0,0,0,.4),rgba(0,0,0,.6));z-index:1}
         .hero-content{position:relative;z-index:2;text-align:center;color:#fff;max-width:800px;padding:0 2rem;animation:heroFadeIn 1s ease}
         @keyframes heroFadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
@@ -56,51 +56,14 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap"></noscript>
     
-    <!-- Enhanced SEO Meta Tags -->
-    <meta name="description" content="Yizhen 艺珍 - Where Heritage Meets Innovation. Authenticated Ru kiln ceramics from Northern Song Dynasty, Ming Jingtai cloisonné, and Yuan blue-glazed porcelain. Museum-quality Chinese artifacts with blockchain ownership verification.">
-    <meta name="keywords" content="Yizhen, 艺珍, Ru kiln, Ru ware, Song Dynasty, Chinese ceramics, 汝窯, 宋代瓷器, Ming Dynasty, Jingtai cloisonné, 景泰藍, Yuan Dynasty, Jilan glaze, 霽藍釉, auction, ERC-404, NFT, provenance, Emperor Huizong">
-    
-    <!-- Open Graph for Social -->
-    <meta property="og:title" content="Yizhen 艺珍 | $35M+ Chinese Imperial Ceramics Collection">
-    <meta property="og:description" content="Where Heritage Meets Innovation. Own museum-quality Ru kiln ceramics and imperial Chinese artifacts from Song, Yuan, and Ming dynasties.">
-    <meta property="og:image" content="/assets/videos/relics/001-song-ru-washer/main.mp4">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yizhen.com">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Yizhen 艺珍 - Rare Ru Kiln Ceramics at Auction">
-    <meta name="twitter:description" content="Exceptional Northern Song Ru ware, Ming cloisonné, and Yuan porcelain. Where heritage meets innovation in Chinese ceramic achievement.">
-    <meta name="twitter:image" content="/assets/videos/relics/001-song-ru-washer/main.mp4">
+    <!-- Meta Tags -->
+    <meta name="description" content="Yizhen 艺珍 - Where Heritage Meets Innovation. Authenticated Chinese ceramics auction platform.">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="alternate icon" href="/favicon.ico">
     
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ArtGallery",
-      "name": "Yizhen 艺珍",
-      "description": "The Art of Provenance - Web3 auction house specializing in imperial Chinese ceramics from Song, Yuan, and Ming dynasties",
-      "url": "https://yizhen.com",
-      "slogan": "The Art of Provenance"
-    }
-    </script>
-    
-    <link rel="canonical" href="https://yizhen.com">
-    
-    <!-- Defer non-critical CSS -->
-    <link rel="preload" href="/assets/css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="/assets/css/main.css"></noscript>
-    
-    <!-- Preload critical JavaScript -->
-    <link rel="modulepreload" href="/assets/js/app.js">
-    <link rel="modulepreload" href="/assets/js/web3.js">
-    
-    <!-- Preload artifact data -->
-    <link rel="preload" href="/assets/data/artifacts.json" as="fetch" crossorigin>
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 <body>
     <!-- Loading Screen -->
@@ -222,19 +185,224 @@
     </footer>
 
     <!-- Scripts -->
-    <!-- Load ethers.js asynchronously -->
-    <script async src="https://cdn.jsdelivr.net/npm/ethers@6.11.1/dist/ethers.umd.min.js"></script>
+    <!-- Load ethers.js first -->
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.11.1/dist/ethers.umd.min.js"></script>
     
-    <!-- Load application modules -->
-    <script type="module" src="/assets/js/app.js"></script>
+    <!-- Inline the complete artifacts data -->
+    <script>
+        window.artifactsData = [
+            {
+                "id": 1,
+                "lotNumber": "001",
+                "title": "NORTHERN SONG DYNASTY JUN WARE WASHER (OFFICIAL KILN)",
+                "chinese": "北宋 钧窑洗",
+                "dynasty": "song",
+                "dynastyInfo": "Northern Song Dynasty, 960-1127 AD",
+                "videoOrientation": "landscape",
+                "video": "/assets/videos/relics/001-jun-washer/main.mp4",
+                "description": "This refined ceramic washer—used likely in scholarly or calligraphic rituals—epitomizes the artistry of Jun ware from the Northern Song official kilns.",
+                "estimate": { "low": 80000, "high": 120000 },
+                "currentBid": 92000,
+                "minBidIncrement": 2000,
+                "bidCount": 23,
+                "endTime": 1734062400000,
+                "provenance": "Private Collection, acquired 1980s\nThermoluminescence tested\nPublished in Jun Ware Studies, 2019",
+                "condition": "Excellent condition with characteristic ice-crackle throughout the glaze.",
+                "dimensions": "Diameter: Approx. 20 cm (7.9 in)\nHeight: Approx. 10 cm (3.9 in)",
+                "literature": "Compare with similar examples in the Palace Museum collections."
+            },
+            {
+                "id": 2,
+                "lotNumber": "002",
+                "title": "NORTHERN SONG DYNASTY JUN KILN LYING-FOOT PLATE",
+                "chinese": "北宋 钧窑卧足盘",
+                "dynasty": "song",
+                "dynastyInfo": "Northern Song Dynasty, 960-1127 AD",
+                "videoOrientation": "square",
+                "video": "/assets/videos/relics/002-jun-plate/main.mp4",
+                "description": "This refined ceramic piece is a lying-foot plate from the prestigious Jun kilns.",
+                "estimate": { "low": 20000, "high": 30000 },
+                "currentBid": 24000,
+                "minBidIncrement": 1000,
+                "bidCount": 15,
+                "endTime": 1734235200000,
+                "provenance": "European private collection, acquired 1970s\nAuthenticity confirmed by Oxford TL dating",
+                "condition": "Very good condition with high gloss surface and fine crackling.",
+                "dimensions": "Diameter: Approx. 22–25 cm (8.7–9.8 in)\nHeight: Approx. 4–6 cm (1.6–2.4 in)",
+                "literature": "Referenced in \"Song Dynasty Ceramics\", London, 2015, fig. 127."
+            },
+            {
+                "id": 3,
+                "lotNumber": "003",
+                "title": "FIVE DYNASTIES PERIOD SINGLE-COLOR GLAZE BOWL",
+                "chinese": "五代 单色釉碗",
+                "dynasty": "song",
+                "dynastyInfo": "Five Dynasties Period, 907-960 AD",
+                "videoOrientation": "portrait",
+                "video": "/assets/videos/relics/003-celadon-bowl/main.mp4",
+                "description": "This elegant bowl exemplifies the restrained sophistication of early Chinese ceramic aesthetics.",
+                "estimate": { "low": 10000, "high": 15000 },
+                "currentBid": 11500,
+                "minBidIncrement": 500,
+                "bidCount": 8,
+                "endTime": 1734148800000,
+                "provenance": "Japanese private collection, formed 1960s\nAcquired from Kyoto dealer",
+                "condition": "Excellent preservation with serene pale bluish tone.",
+                "dimensions": "Diameter: Approx. 15 cm (5.9 in)\nHeight: Approx. 7 cm (2.8 in)",
+                "literature": "Illustrated in \"Early Chinese Ceramics\", Tokyo, 1988, pl. 34."
+            },
+            {
+                "id": 4,
+                "lotNumber": "004",
+                "title": "NORTHERN SONG DYNASTY BEGONIA-SHAPED JUN WARE WASH",
+                "chinese": "北宋 钧窑海棠式洗",
+                "dynasty": "song",
+                "dynastyInfo": "Northern Song Dynasty, 960-1127 AD",
+                "videoOrientation": "landscape",
+                "video": "/assets/videos/relics/004-begonia-wash/main.mp4",
+                "description": "This exquisitely formed begonia wash showcases the aesthetic and technical zenith of Jun ware ceramics.",
+                "estimate": { "low": 50000, "high": 70000 },
+                "currentBid": 58000,
+                "minBidIncrement": 2000,
+                "bidCount": 19,
+                "endTime": 1734321600000,
+                "provenance": "American private collection, acquired 1990s\nFormer museum deaccession",
+                "condition": "Exceptional condition with glossy surface and fine crackles.",
+                "dimensions": "Length: Approx. 25 cm (9.8 in)\nWidth: Approx. 15 cm (5.9 in)",
+                "literature": "Published in \"Jun Ware Masterpieces\", New York, 2010, cat. 67."
+            },
+            {
+                "id": 5,
+                "lotNumber": "005",
+                "title": "NORTHERN SONG DYNASTY GE WARE PEN WASH",
+                "chinese": "北宋 哥窑笔洗",
+                "dynasty": "song",
+                "dynastyInfo": "Northern Song Dynasty, 960-1127 AD",
+                "videoOrientation": "square",
+                "video": "/assets/videos/relics/005-ge-pen-wash/main.mp4",
+                "description": "This artifact exemplifies the refined aesthetic and technical brilliance of Ge ware.",
+                "estimate": { "low": 50000, "high": 70000 },
+                "currentBid": 46000,
+                "minBidIncrement": 2000,
+                "bidCount": 12,
+                "endTime": 1734408000000,
+                "provenance": "Hong Kong private collection\nAcquired from London auction house, 1985",
+                "condition": "Fine condition with controlled glaze pattern.",
+                "dimensions": "Length: Approx. 20 cm (7.9 in)\nWidth: Approx. 10 cm (3.9 in)",
+                "literature": "Comparable pieces in \"Ge Ware Studies\", Hong Kong, 2012."
+            },
+            {
+                "id": 6,
+                "lotNumber": "006",
+                "title": "NORTHERN SONG DYNASTY RU KILN BINAURAL WINE VESSEL",
+                "chinese": "北宋 汝窑双耳酒海",
+                "dynasty": "song",
+                "dynastyInfo": "Northern Song Dynasty, 960-1127 AD",
+                "videoOrientation": "portrait",
+                "video": "/assets/videos/relics/006-ru-wine-vessel/main.mp4",
+                "description": "This piece is a rare Ru kiln binaural wine sea, an elite vessel from one of the most prestigious ceramic traditions.",
+                "estimate": { "low": 50000, "high": 100000 },
+                "currentBid": 75000,
+                "minBidIncrement": 2500,
+                "bidCount": 31,
+                "endTime": 1733976000000,
+                "provenance": "Previously cataloged as lot 280\nEuropean private collection, acquired 1980s",
+                "condition": "Excellent preservation with lustrous pale blue-green celadon glaze.",
+                "dimensions": "Height: Approx. 20 cm (7.87 in)\nDiameter: Approx. 12 cm (4.72 in)",
+                "literature": "Compare with Ru ware examples in the Percival David Collection."
+            },
+            {
+                "id": 7,
+                "lotNumber": "007",
+                "title": "NORTHERN SONG DYNASTY OWL-SHAPED INCENSE BURNER",
+                "chinese": "北宋 三足异形香炉",
+                "dynasty": "song",
+                "dynastyInfo": "Northern Song Dynasty, 960-1127 AD",
+                "videoOrientation": "landscape",
+                "video": "/assets/videos/relics/007-owl-incense-burner/main.mp4",
+                "description": "This extraordinary incense burner takes the form of a stylized owl, an extremely rare motif.",
+                "estimate": { "low": 50000, "high": 80000 },
+                "currentBid": 62000,
+                "minBidIncrement": 2000,
+                "bidCount": 17,
+                "endTime": 1734148800000,
+                "provenance": "American museum deaccession, 1990s\nOriginally acquired in the 1960s",
+                "condition": "Very good condition with crackled pale bluish celadon glaze.",
+                "dimensions": "Height: Approx. 15 cm (5.9 in)\nWidth: Approx. 10 cm (3.9 in)",
+                "literature": "Rare form documented in \"Song Dynasty Animal Forms\", Beijing, 2008."
+            },
+            {
+                "id": 8,
+                "lotNumber": "008",
+                "title": "LARGE STORAGE JAR – JUN WARE",
+                "chinese": "五代至北宋早期 钧窑大罐",
+                "dynasty": "song",
+                "dynastyInfo": "Late Five Dynasties to Early Northern Song, 907-960 AD",
+                "videoOrientation": "portrait",
+                "video": "/assets/videos/relics/008-jun-storage-jar/main.mp4",
+                "description": "This commanding ceramic jar represents a transitional form bridging the late Five Dynasties and early Northern Song.",
+                "estimate": { "low": 90000, "high": 150000 },
+                "currentBid": 118000,
+                "minBidIncrement": 3000,
+                "bidCount": 27,
+                "endTime": 1733889600000,
+                "provenance": "Swiss private collection, formed 1970s\nTL tested and confirmed",
+                "condition": "Sound condition with lustrous surface.",
+                "dimensions": "Height: Approx. 40–45 cm (15.7–17.7 in)\nDiameter: Approx. 35 cm (13.8 in)",
+                "literature": "Form discussed in \"Transitional Ceramics of China\", Geneva, 1995."
+            },
+            {
+                "id": 9,
+                "lotNumber": "009",
+                "title": "NORTHERN SONG DYNASTY JUN PORCELAIN PLUM VASE",
+                "chinese": "北宋 钧窑梅瓶",
+                "dynasty": "song",
+                "dynastyInfo": "Northern Song Dynasty, 960-1127 AD",
+                "videoOrientation": "portrait",
+                "video": "/assets/videos/relics/009-jun-plum-vase/main.mp4",
+                "description": "This plum vase represents one of the most captivating expressions of Chinese ceramic artistry.",
+                "estimate": { "low": 150000, "high": 300000 },
+                "currentBid": 225000,
+                "minBidIncrement": 5000,
+                "bidCount": 42,
+                "endTime": 1733803200000,
+                "provenance": "Important American private collection\nAcquired from Sotheby's New York, 1988",
+                "condition": "Exceptional condition with iridescent dappled glazes.",
+                "dimensions": "Height: Approximately 30 cm (11.8 in)\nDiameter: Approximately 15 cm (5.9 in)",
+                "literature": "Published in \"Masterpieces of Jun Ware\", Metropolitan Museum, 2005."
+            },
+            {
+                "id": 10,
+                "lotNumber": "010",
+                "title": "SOUTHERN SONG DYNASTY BAGUA XUANWEN SQUARE BOTTLE",
+                "chinese": "南宋 八卦玄文四方瓶",
+                "dynasty": "song",
+                "dynastyInfo": "Southern Song Dynasty, 1127-1279 AD",
+                "videoOrientation": "portrait",
+                "video": "/assets/videos/relics/010-bagua-bottle/main.mp4",
+                "description": "This square-bodied ceramic bottle is a stellar representation of Southern Song dynasty craftsmanship.",
+                "estimate": { "low": 20000, "high": 30000 },
+                "currentBid": 23500,
+                "minBidIncrement": 1000,
+                "bidCount": 14,
+                "endTime": 1734494400000,
+                "provenance": "German private collection, acquired 1980s\nOriginally from Daoist temple collection",
+                "condition": "Fine condition with translucent glaze pooling.",
+                "dimensions": "Height: Approx. 25 cm (9.8 in)\nWidth: Approx. 10 cm (3.9 in)",
+                "literature": "Daoist symbolism discussed in \"Sacred Ceramics\", Munich, 2010."
+            }
+        ];
+    </script>
+    
+    <!-- Load application as regular script, not module -->
+    <script src="/assets/js/app.js"></script>
     
     <!-- Service Worker Registration -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => console.log('SW registered'))
-                    .catch(error => console.log('SW registration failed'));
+                // Skip service worker for now to avoid caching issues
+                console.log('Service worker disabled for debugging');
             });
         }
     </script>
