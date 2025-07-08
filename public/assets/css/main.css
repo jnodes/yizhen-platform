@@ -958,3 +958,24 @@ footer {
         color: black;
     }
 }
+
+/* Grid Height Fix - Makes all cards same height */
+.artifact-video-container {
+    aspect-ratio: unset !important;
+    height: 250px !important;
+}
+
+.artifact-video-container.landscape,
+.artifact-video-container.portrait,
+.artifact-video-container.square {
+    aspect-ratio: unset !important;
+    height: 250px !important;
+}
+
+.artifacts-grid {
+    grid-auto-rows: 1fr;
+}
+
+.artifact-video {
+    object-fit: cover;
+}
