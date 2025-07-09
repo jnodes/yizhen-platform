@@ -1,4 +1,4 @@
-/* Chinese Font Support for Yizhen Platform */
+/* Complete Chinese Font Support for Yizhen Platform */
 
 /* Import Chinese fonts */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@300;400;500;700&display=swap');
@@ -331,4 +331,95 @@ body[lang="zh-TW"] {
 .language-option span:first-child {
     font-size: 1.2em;
     margin-right: 0.3em;
+}
+
+/* Animation adjustments for Chinese text */
+[lang="zh-TW"] .hero-content {
+    animation: heroFadeInZh 1s ease;
+}
+
+@keyframes heroFadeInZh {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Chinese text shadows for better readability */
+[lang="zh-TW"] .hero h1 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+[lang="zh-TW"] .hero p {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Bidding section adjustments */
+[lang="zh-TW"] .current-bid-label {
+    font-family: var(--font-chinese-sans);
+    font-weight: 500;
+}
+
+[lang="zh-TW"] .current-bid-amount {
+    font-family: var(--font-chinese-sans);
+    font-weight: 600;
+}
+
+[lang="zh-TW"] .bid-count {
+    font-family: var(--font-chinese-sans);
+}
+
+[lang="zh-TW"] .bid-option h5 {
+    font-family: var(--font-chinese-sans);
+    font-weight: 500;
+}
+
+[lang="zh-TW"] .bid-option p {
+    font-family: var(--font-chinese-sans);
+    line-height: 1.6;
+}
+
+/* Loading screen adjustments */
+[lang="zh-TW"] .loading {
+    font-family: var(--font-chinese-sans);
+}
+
+/* Auction header adjustments */
+[lang="zh-TW"] .auction-header h2 {
+    font-family: var(--font-chinese-serif);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+/* Table styling for Chinese */
+[lang="zh-TW"] table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+[lang="zh-TW"] td,
+[lang="zh-TW"] th {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    font-family: var(--font-chinese-sans);
+}
+
+/* Print styles for Chinese */
+@media print {
+    [lang="zh-TW"] * {
+        font-family: var(--font-chinese-sans) !important;
+    }
+    
+    [lang="zh-TW"] h1,
+    [lang="zh-TW"] h2,
+    [lang="zh-TW"] h3,
+    [lang="zh-TW"] h4,
+    [lang="zh-TW"] h5,
+    [lang="zh-TW"] h6 {
+        font-family: var(--font-chinese-serif) !important;
+    }
 }
