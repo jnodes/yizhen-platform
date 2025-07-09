@@ -1,0 +1,334 @@
+/* Chinese Font Support for Yizhen Platform */
+
+/* Import Chinese fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@300;400;500;700&display=swap');
+
+/* Font variables */
+:root {
+    --font-chinese-sans: 'Noto Sans TC', 'Source Han Sans TC', 'PingFang TC', 'Microsoft JhengHei', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-chinese-serif: 'Noto Serif TC', 'Source Han Serif TC', 'PingFang TC', 'Times New Roman', serif;
+}
+
+/* Body font for Chinese */
+body[lang="zh-TW"] {
+    font-family: var(--font-chinese-sans);
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+}
+
+/* Headings for Chinese */
+[lang="zh-TW"] h1,
+[lang="zh-TW"] h2,
+[lang="zh-TW"] h3,
+[lang="zh-TW"] h4,
+[lang="zh-TW"] h5,
+[lang="zh-TW"] h6 {
+    font-family: var(--font-chinese-serif);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+/* Navigation adjustments */
+[lang="zh-TW"] .nav-center a {
+    text-transform: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+}
+
+/* Logo tagline adjustments */
+[lang="zh-TW"] .logo-tagline {
+    text-transform: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+}
+
+/* Button text adjustments */
+[lang="zh-TW"] .connect-wallet,
+[lang="zh-TW"] .hero-cta,
+[lang="zh-TW"] .bid-button {
+    text-transform: none;
+    letter-spacing: 0.05em;
+}
+
+/* Hero section adjustments */
+[lang="zh-TW"] .hero h1 {
+    font-size: 3rem;
+    line-height: 1.2;
+}
+
+[lang="zh-TW"] .hero p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* Language switcher styles */
+.language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.language-button {
+    background: none;
+    border: 1px solid var(--gray-medium);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 80px;
+    justify-content: space-between;
+}
+
+.language-button:hover {
+    border-color: var(--text-primary);
+}
+
+.language-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid var(--gray-medium);
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    min-width: 140px;
+    display: none;
+    margin-top: 0.25rem;
+}
+
+.language-dropdown.show {
+    display: block;
+}
+
+.language-option {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    border-bottom: 1px solid var(--gray-light);
+}
+
+.language-option:last-child {
+    border-bottom: none;
+}
+
+.language-option:hover {
+    background: var(--gray-light);
+}
+
+.language-option.active {
+    background: var(--accent);
+    color: white;
+}
+
+/* Artifact card adjustments for Chinese */
+[lang="zh-TW"] .artifact-title {
+    font-family: var(--font-chinese-serif);
+    font-size: 1.1rem;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+}
+
+[lang="zh-TW"] .artifact-dynasty {
+    font-family: var(--font-chinese-sans);
+    line-height: 1.6;
+}
+
+[lang="zh-TW"] .artifact-lot {
+    font-family: var(--font-chinese-sans);
+    font-weight: 500;
+}
+
+/* Modal adjustments for Chinese */
+[lang="zh-TW"] .modal-title {
+    font-family: var(--font-chinese-serif);
+    font-size: 1.8rem;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+}
+
+[lang="zh-TW"] .modal-dynasty {
+    font-family: var(--font-chinese-sans);
+    line-height: 1.6;
+}
+
+[lang="zh-TW"] .modal-description {
+    font-family: var(--font-chinese-sans);
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+}
+
+[lang="zh-TW"] .detail-section h4 {
+    font-family: var(--font-chinese-sans);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+[lang="zh-TW"] .detail-section p {
+    font-family: var(--font-chinese-sans);
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+}
+
+/* Filter bar adjustments */
+[lang="zh-TW"] .dynasty-filter {
+    text-transform: none;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+[lang="zh-TW"] .sort-controls {
+    font-size: 0.875rem;
+}
+
+/* Stats section adjustments */
+[lang="zh-TW"] .stat-item {
+    font-family: var(--font-chinese-sans);
+}
+
+[lang="zh-TW"] .stat-value {
+    font-family: var(--font-chinese-sans);
+    font-weight: 500;
+}
+
+/* Toast notification adjustments */
+[lang="zh-TW"] .toast {
+    font-family: var(--font-chinese-sans);
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+}
+
+/* Footer adjustments */
+[lang="zh-TW"] .footer-content {
+    font-family: var(--font-chinese-sans);
+}
+
+[lang="zh-TW"] .footer-tagline {
+    font-family: var(--font-chinese-sans);
+    letter-spacing: 0.05em;
+}
+
+[lang="zh-TW"] .footer-bottom {
+    font-family: var(--font-chinese-sans);
+    letter-spacing: 0.02em;
+}
+
+/* Responsive adjustments for Chinese */
+@media (max-width: 768px) {
+    [lang="zh-TW"] .hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    [lang="zh-TW"] .hero p {
+        font-size: 1.1rem;
+    }
+    
+    [lang="zh-TW"] .modal-title {
+        font-size: 1.5rem;
+    }
+    
+    [lang="zh-TW"] .nav-center a {
+        font-size: 0.85rem;
+    }
+    
+    .language-switcher {
+        order: -1;
+    }
+    
+    .language-button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+        min-width: 60px;
+    }
+    
+    .language-dropdown {
+        min-width: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    [lang="zh-TW"] .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    [lang="zh-TW"] .artifact-title {
+        font-size: 1rem;
+    }
+    
+    [lang="zh-TW"] .modal-title {
+        font-size: 1.3rem;
+    }
+    
+    .language-button {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+        min-width: 50px;
+    }
+    
+    .language-dropdown {
+        min-width: 100px;
+    }
+    
+    .language-option {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Text selection styling for Chinese */
+[lang="zh-TW"] ::selection {
+    background: var(--accent);
+    color: white;
+    text-shadow: none;
+}
+
+[lang="zh-TW"] ::-moz-selection {
+    background: var(--accent);
+    color: white;
+    text-shadow: none;
+}
+
+/* Input and form styling for Chinese */
+[lang="zh-TW"] input,
+[lang="zh-TW"] textarea,
+[lang="zh-TW"] select {
+    font-family: var(--font-chinese-sans);
+    letter-spacing: 0.02em;
+}
+
+[lang="zh-TW"] input::placeholder,
+[lang="zh-TW"] textarea::placeholder {
+    font-family: var(--font-chinese-sans);
+    letter-spacing: 0.02em;
+}
+
+/* Fix for Chinese text overflow */
+[lang="zh-TW"] .artifact-title,
+[lang="zh-TW"] .modal-title {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: none;
+}
+
+/* Chinese number formatting */
+[lang="zh-TW"] .stat-value,
+[lang="zh-TW"] .current-bid-amount,
+[lang="zh-TW"] .artifact-bid {
+    font-variant-numeric: tabular-nums;
+}
+
+/* Language flag emoji adjustments */
+.language-option span:first-child {
+    font-size: 1.2em;
+    margin-right: 0.3em;
+}
