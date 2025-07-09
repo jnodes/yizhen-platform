@@ -1,4 +1,4 @@
-// International Translation System for Yizhen Platform
+// Complete International Translation System for Yizhen Platform
 // Supports English and Traditional Chinese
 
 class I18nManager {
@@ -369,38 +369,6 @@ class I18nManager {
         if (days > 0) return `${days}${this.t('time.days')} ${hours}${this.t('time.hours')}`;
         if (hours > 0) return `${hours}${this.t('time.hours')} ${minutes}${this.t('time.minutes')}`;
         return `${minutes}${this.t('time.minutes')}`;
-    }
-    
-    // Get translated artifact data
-    getArtifactTranslations() {
-        return {
-            en: {
-                dynastyInfo: {
-                    "song": "Northern Song Dynasty, 960-1127 AD",
-                    "yuan": "Yuan Dynasty, 1271-1368 AD",
-                    "ming": "Ming Dynasty, 1368-1644 AD"
-                }
-            },
-            zh: {
-                dynastyInfo: {
-                    "song": "北宋，960-1127年",
-                    "yuan": "元朝，1271-1368年",
-                    "ming": "明朝，1368-1644年"
-                },
-                descriptions: {
-                    1: "這件精緻的筆洗——可能用於文人或書法儀式——體現了北宋官窯鈞窯的藝術造詣。",
-                    2: "這件精緻的陶瓷作品是來自聲譽卓著的鈞窯的臥足盤。",
-                    3: "這件優雅的碗體現了早期中國陶瓷美學的含蓄精緻。",
-                    4: "這件精美成形的海棠洗展示了北宋鈞窯陶瓷的美學和技術巔峰。",
-                    5: "這件器物體現了哥窯精緻的美學和卓越的技術成就。",
-                    6: "這件作品是稀有的汝窯雙耳酒海，是中國最負盛名的陶瓷傳統之一的精品器皿。",
-                    7: "這件非凡的香爐採用程式化的貓頭鷹形式，是中國陶瓷中極為罕見的圖案。",
-                    8: "這件氣勢恢宏的陶瓷罐代表了連接五代晚期和北宋早期的過渡形式。",
-                    9: "這件梅瓶代表了中國陶瓷藝術最迷人的表現之一。",
-                    10: "這件方體陶瓷瓶是南宋工藝的傑出代表。"
-                }
-            }
-        };
     }
 }
 
