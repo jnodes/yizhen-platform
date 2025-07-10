@@ -9,8 +9,8 @@ export class Web3Manager {
         
         // Initialize contractAddresses first
         this.contractAddresses = {
-            auction: "0x1234567890123456789012345678901234567890",
-            erc404: "0x0987654321098765432109876543210987654321"
+            auction: "0x70E14Fa0dda8C403DA2590283b5201F4B03E42a8",
+            nft: "0x70e14fa0dda8c403da2590283b5201f4b03e42a8"
         };
         
         // Then check demo mode
